@@ -13,6 +13,8 @@ var request      = require("request")
   , orders       = require("./api/orders")
   , user         = require("./api/user")
   , metrics      = require("./api/metrics")
+  , outage      = require("./api/outage")
+  , outageHelper = require("./helpers/outage")
   , app          = express()
 
 
@@ -45,10 +47,12 @@ process.argv.forEach(function (val, index, array) {
 });
 
 /* Mount API endpoints */
-app.use(cart);
-app.use(catalogue);
-app.use(orders);
-app.use(user);
+app.use(outage)
+    .use(outageHelper.check)
+    .use(cart)
+    .use(catalogue)
+    .use(orders)
+    .use(user);
 
 app.use(helpers.errorHandler);
 

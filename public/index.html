@@ -187,12 +187,12 @@ _________________________________________________________ -->
             if (data != null) {
                 $.each(data, function (index, element) {
                     $('#hot-slider').append(
-                            '<div class="item">\
-                            <div class="product">\
-                                <div class="flip-container">\
-                                    <div class="flipper">\
-                                        <div class="front">\
-                                            <a href="detail.html?id=' + element.id + '">\
+                        '<div class="item">\
+                        <div class="product">\
+                            <div class="flip-container">\
+                                <div class="flipper">\
+                                    <div class="front">\
+                                        <a href="detail.html?id=' + element.id + '">\
                                             <img src="' + element.imageUrl[0] + '" alt="" class="img-responsive">\
                                         </a>\
                                     </div>\
@@ -234,9 +234,33 @@ _________________________________________________________ -->
                 });
 
             }
+        }).error(function (err) {
+            if (err.status === 503) {
+                $('#outageModal').modal({backdrop: 'static', keyboard: false})
+                $('#outageModal').modal('show');
+            }
         });
-    })
+    });
 </script>
+<div id="outageModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Computer says no</h4>
+            </div>
+            <div class="modal-body">
+                <p>Unfortunately, we are having technical problems.
+                    <br/>This is what we are going to do to make you happy again</p>
+            </div>
+            <div class="modal-footer">
+
+            </div>
+        </div>
+
+    </div>
+</div>
 </body>
 
 </html>
