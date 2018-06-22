@@ -5,6 +5,10 @@
       RedisStore   = require('connect-redis')(session)
 
   module.exports = {
+
+    outage: {
+      token: 'very secret token', // In real life scenarios this token should be stored separately and not committed
+    },
     session: {
       name: 'md.sid',
       secret: 'sooper secret',
